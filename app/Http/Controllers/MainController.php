@@ -13,7 +13,7 @@ class MainController extends Controller
     /*
      * getting all polls
      * */
-    public function getMain()
+    public function getPolls()
     {
         $polls = Poll::where('status',1)->orderBy('id','desc')->paginate(10, ['*'], 'polls');
         return view('index')->with(compact('polls'));

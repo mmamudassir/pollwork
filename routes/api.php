@@ -16,3 +16,26 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+ * public routes
+ * */
+
+/*
+ * register login routes
+ * */
+Route::post('/register', ['uses' => 'Api\AuthController@register', 'as' => 'login.api']);
+Route::post('/login', ['uses' => 'Api\AuthController@login', 'as' => 'login.api']);
+
+/*
+ * fetching all polls
+ * */
+Route::post('/polls', ['uses' => 'Api\PollController@getPolls', 'as' => 'polls.api']);
+Route::post('/vote', ['uses' => 'Api\PollController@postMyVote', 'as' => 'vote-poll.api']);
+
+/*
+ *  auth routes
+ * */
+Route::middleware('auth:api')->group(function () {
+    Route::post('/logout', ['uses' => 'Api\AuthController@logout', 'as' => 'logout.api']);
+});

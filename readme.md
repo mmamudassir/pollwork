@@ -23,6 +23,8 @@ Dynammic Poll Implementation task.
 
 - clone the repo 
 - migrate the database migrations 
+- composer update & php artisan passport:install
+
 - run composer-dump-autoload
 
     

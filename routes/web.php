@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', ['uses' => 'MainController@getMain', 'as' => 'main']);
+Route::get('/', ['uses' => 'MainController@getPolls', 'as' => 'main']);
 Route::get('/poll/{poll_id}', ['uses' => 'MainController@getMyPoll', 'as' => 'poll']);
 Route::post('/vote', ['uses' => 'MainController@postMyVote', 'as' => 'poll.vote']);
 

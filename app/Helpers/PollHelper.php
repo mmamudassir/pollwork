@@ -50,4 +50,20 @@ class PollHelper {
             return false;
         }
     }
+
+    public static function validOption($poll_id, $option_id){
+
+        /*
+         * finding poll all options with current poll option
+         * */
+        $option_exist = Option::Where('poll_id', $poll_id)
+            ->where('id', $option_id)
+            ->count();
+
+        if($option_exist > 0 ){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
