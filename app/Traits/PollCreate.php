@@ -10,9 +10,6 @@ trait PollCreate {
 
     /**
      * Add an option to the array if not exists
-     *
-     * @param $option
-     * @return bool
      */
     private function pushOption($option)
     {
@@ -25,10 +22,6 @@ trait PollCreate {
 
     /**
      * Add new Options
-     *
-     * @param $options
-     * @return $this
-     * @throws \InvalidArgumentException
      */
     public function addOptions($options)
     {
@@ -52,7 +45,6 @@ trait PollCreate {
 
     /**
      * Generate the poll
-     *
      */
     public function generate()
     {

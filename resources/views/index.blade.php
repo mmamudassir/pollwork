@@ -10,8 +10,11 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                            @if(count($polls) == 0)
-                                <li> No Request to show </li>
+                            {{--
+                             displaying all polls on main page
+                            --}}
+                            @if(count($polls)  < 1 || is_null($polls))
+                                <li> No polls available </li>
                             @else
                                 @foreach($polls as $poll)
                                     <li>

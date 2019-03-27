@@ -8,11 +8,11 @@
                 <form method="POST" action="{!! route('poll.save') !!}">
                 {{ csrf_field() }}
                     <h1 class="text-center"> Create a poll </h1>
-                <!-- Question Input -->
                     <div class="form-group">
                         <label for="question">Question:</label>
                         <textarea id="question" name="question"  cols="30" rows="2" class="form-control" placeholder="Example: Who is the best footballer in the world?">{{ old('question') }}</textarea>
                     </div>
+                    {{-- polls create form--}}
                     <div class="form-group">
                         <label>Options</label>
                         <ul id="options">
@@ -32,12 +32,12 @@
                                 <input id="option_5" type="text" name="options[4]" class="form-control add-input" value="{{ old('options.4') }}" placeholder="Please enter your option"/>
                             </li>
                         </ul>
-
                     </div>
 
                     <div class="form-group">
                         <input name="create" type="submit" value="Create" class="btn btn-primary create-btn"/>
                     </div>
+
                 </form>
             </div>
         </div>

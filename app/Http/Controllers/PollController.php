@@ -20,12 +20,14 @@ class PollController extends Controller
     {
         $poll = PollHelper::createPollFromRequest($request->all());
 
-        if(is_null($poll)){
-            return redirect(route('poll.index'))
-                ->with('success', 'New poll options have been added successfully');
+        if(!is_null($poll)){
+            return redirect(route('poll.create'))
+                ->with('success', "Your poll has been created successfully");
+        }else{
+            return redirect(route('poll.create'))
+                ->with('fail', 'Something went wrong please try later!');
         }
-        return redirect(route('poll.create'))
-            ->with('success', 'Your poll has been created successfully');
+
     }
 
 }

@@ -26,13 +26,14 @@ class MainController extends Controller
 
         $poll = Poll::find($poll_id);
         return view('poll')->with(compact('poll'));
-
     }
 
+    /*
+     * casting a vote after ip validation if same user ip address already exist
+     * */
     public function postMyVote(Request $request){
 
         $resp = [];
-        $resp['success'] = true;
         $ip_address = $request->ip();
         $option_id = $request->get('poll_value');
 
@@ -43,19 +44,32 @@ class MainController extends Controller
                 'option_id' => $option_id
                 ]);
 
-            $resp['count'] = $total_votes = $vote->option->poll->votes->count();
+            $total_votes = $vote->option->poll->votes->count();
 
-            dd($resp);
+            $poll = $vote->option->poll;
+
             /*
-             * calculation of vote for each option is next task
+             * polls percentage calculation of the basis of total votes and votes casted against each option
              * */
-//            return response()->json(['success'=>'vote is successfullly casted', 'votes'=>$]);
-//            dd($vote->option->poll->votes);
+            $votes_result = [];
+            foreach ($poll->options as $option){
+                $votes = [];
+                $votes['casted_option'] = $option->name;
+                $votes['casted_votes'] =  $option->votes()->count();
+                $votes['casted_percentages'] = number_format( ($votes['casted_votes'] / $total_votes) * 100, 2);
+
+                $votes_result [] = $votes;
+            }
+
+            $resp['message'] = "Your vote has been successfully casted.";
+            $resp['poll'] = view('includes.poll-result')->with(compact('votes_result'))->render();
+            return response()->json($resp, 200);
+
         }else{
-            dd('already voted');
+            $resp['success'] =false;
+            $resp['message'] = "You already voted for this poll you cant vote twice!";
+            return response()->json($resp, 200);
         }
-
-
 
     }
 }

@@ -30,6 +30,9 @@ class PollCreationRequest extends FormRequest
             ];
         }
 
+        /*
+         * validation rules for creating a poll
+         * */
         return [
             'question' => 'present|required',
             'options.0' => 'present|required',
@@ -37,6 +40,9 @@ class PollCreationRequest extends FormRequest
         ];
     }
 
+    /*
+     * custom validation messages
+     * */
     public function messages()
     {
         return [
