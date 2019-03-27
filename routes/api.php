@@ -28,7 +28,7 @@ Route::post('/register', ['uses' => 'Api\AuthController@register', 'as' => 'logi
 Route::post('/login', ['uses' => 'Api\AuthController@login', 'as' => 'login.api']);
 
 /*
- * fetching all polls
+ * fetching all polls and casting vote
  * */
 Route::post('/polls', ['uses' => 'Api\PollController@getPolls', 'as' => 'polls.api']);
 Route::post('/vote', ['uses' => 'Api\PollController@postMyVote', 'as' => 'vote-poll.api']);

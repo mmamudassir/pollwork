@@ -12,6 +12,10 @@ use Validator;
 
 class PollController extends Controller
 {
+    /*
+     * get all polls API
+     * Per page 5 polls and their options ir return
+     * */
     public function getPolls(Request $request)
     {
         $page = 1;
@@ -49,8 +53,8 @@ class PollController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * cast a user vote
+     * validate voter vote already registered and vote option is valid
      */
     public function postMyVote(Request $request){
 
